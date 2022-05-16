@@ -6,7 +6,9 @@ struct Node
 {
     int data;
     struct Node *next;
-}*first = nullptr;
+}*first = nullptr, *second = nullptr, *third = nullptr, *Head = nullptr;
+
+// Creating Linked List
 
 void create(int a[], int n)
 {
@@ -15,6 +17,23 @@ void create(int a[], int n)
     first->data = a[0];
     first->next = nullptr;
     last = first;
+    for (int i = 1; i < n; i++)
+    {
+        t = new Node;
+        t->data = a[i];
+        t->next = nullptr;
+        last->next = t;
+        last = t;
+    }
+}
+
+void create2(int a[], int n)
+{
+    struct Node *t, *last;
+    second = new Node;
+    second->data = a[0];
+    second->next = nullptr;
+    last = second;
     for (int i = 1; i < n; i++)
     {
         t = new Node;
@@ -373,12 +392,224 @@ void reversingRecursion(struct Node *q, struct Node *p)
     }
 }
 
+//Concatinating linked list:-
+
+void concatination(struct Node *p, struct Node *q)
+{
+    third = p;
+    while (p->next != NULL)
+    {
+        p = p->next;
+    }
+    p->next = q;
+    q = NULL;
+}
+
+// Merging two linked list:-
+
+void merge(struct Node *p, struct Node *q)
+{
+    struct Node *last;
+    if (p->data < q->data)
+    {
+        third = last = p;
+        p = p->next;
+        third->next = NULL;
+    }
+    else
+    {
+        third = last = q;
+        q = q->next;
+        third->next = NULL;
+    }
+    while (p && q)
+    {
+        if (p->data < q->data)
+        {
+            last->next = p;
+            last = p;
+            p = p->next;
+            last->next = NULL;
+        }
+        else
+        {
+            last->next = q;
+            last = q;
+            q = q->next;
+            last->next = NULL;
+        }
+    }
+    if (p)
+    {
+        last->next = p;
+    }
+    if (q)
+    {
+        last->next = q;
+    }
+}
+
+// Checking for loop in linked list:-
+
+int isLoop(struct Node *f)
+{
+    struct Node *p, *q;
+    p = q = f;
+    do
+    {
+        p = p->next;
+        q = q->next;
+        q = q ? q->next : q; 
+    } while (p && q && p != q);
+    if (p == q)
+    {
+        return 1;
+    }
+    else
+    {
+        return 0;
+    }
+}
+
+// Creating and Displaying circular linked list:-
+
+void circularCreate(int a[], int n)
+{
+    struct Node *t, *last;
+    Head = new Node;
+    Head->data = a[0];
+    Head->next = Head;
+    last = Head;
+    for (int i = 1; i < n; i++)
+    {
+        t = new Node;
+        t->data = a[i];
+        t->next = last->next;
+        last->next = t;
+        last = t;
+    }
+}
+
+void circularDisplay(struct Node *p)
+{
+    do
+    {
+        cout<<p->data<<" ";
+        p = p->next;
+    } while (p != Head);
+}
+
+void circularRecursiveDisplay(struct Node *p)
+{
+    static int flag = 0;
+    if (p != Head || flag == 0)
+    {
+        flag = 1;
+        cout<<p->data<<" ";
+        circularRecursiveDisplay(p->next);
+    }
+    flag = 0;
+}
+
+// Inserting for a circular linked list:-
+
+int Length(struct Node *p)
+{
+    int len = 0;
+    do
+    {
+        len++;
+        p = p->next;
+    } while (p != Head);
+    return len;
+}
+
+void circularInsert(struct Node *p, int index, int x)
+{
+    struct Node *t;
+    if (index < 0 || index > Length(p))
+    {
+        return;
+    }
+    if (index == 0)
+    {
+        t = new Node;
+        t->data = x;
+        if (Head == NULL)
+        {
+            Head = t;
+            Head->next = Head;
+        }
+        else
+        {
+            while (p->next != Head)
+            {
+                p = p->next;
+            }
+            p->next = t;
+            t->next = Head;
+            Head = t;
+        }
+    }
+    else
+    {
+        for (int i = 0; i < index - 1; i++)
+        {
+            p = p->next;
+        }
+        t = new Node;
+        t->data = x;
+        t->next = p->next;
+        p->next = t;
+    }
+}
+
+// Deleting from circular linked list:-
+
+int circularDelete(struct Node *p, int pos)
+{
+    struct Node *q;
+    int x;
+    if (pos == 1)
+    {
+        while (p->next != Head)
+        {
+            p = p->next;
+        }
+        x = Head->data;
+        if (p == Head)
+        {
+            delete Head;
+            Head = NULL;
+        }
+        else
+        {
+            p->next = Head->next;
+            delete Head;
+            Head = p->next;
+        }
+    }
+    else
+    {
+        for (int i = 0; i < pos - 2; i++)
+        {
+            p = p->next;
+        }
+        q = p->next;
+        p->next = q->next;
+        x = q->data;
+        delete q;
+    }
+    return x;
+}
+
 int main()
 {
-    struct Node *temp;
     int a[] = {10, 20, 30, 40, 50};
-    create(a, 5);
-    reversingRecursion(NULL, first);
-    RDisplay(first);
+    circularCreate(a, 5);
+    circularDelete(Head, 5);
+    
+    circularRecursiveDisplay(Head);
+    cout<<endl;
     return 0;
 }
