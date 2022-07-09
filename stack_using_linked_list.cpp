@@ -59,24 +59,64 @@ void display()
     }
     cout << endl;
 }
+
+// Fucntion for checking the element is operand or not.
+
+int isOperand(char x)
+{
+    if (x == '+' || x == '-' || x == '*' || x == '/')
+    {
+        return 0;
+    }
+    else
+    {
+        return 1;
+    }
+}
+
+// Function for evaluating the postfix.
+
+int eval(char *postfix)
+{
+    int i, x1, x2, r;
+    for (int i = 0; postfix[i] != '\0'; i++)
+    {
+        if (isOperand(postfix[i]))
+        {
+            push(postfix[i] - '0');
+        }
+        else
+        {
+            x2 = pop();
+            x1 = pop();
+            switch (postfix[i])
+            {
+            case '+':
+                r = x1 + x2;
+                push(r);
+                break;
+            case '-':
+                r = x1 - x2;
+                push(r);
+                break;
+            case '*':
+                r = x1 * x2;
+                push(r);
+                break;
+            case '/':
+                r = x1 / x2;
+                push(r);
+                break;
+            }
+        }
+    }
+    return pop();
+}
  
 int main()
 {
-    
-    int n, m;
-    cout << "enter size of the element : ";
-    cin >> m;
-    for (int i = 0; i < m; i++)
-    {
-        cin >> n;
-        push(n);
-    }
-    
-    display();
+    char *postfix = "234*+82/-";
+    cout << eval(postfix);
 
-    cout << pop() << endl;
-
-    display();
-    
     return 0;
 }
