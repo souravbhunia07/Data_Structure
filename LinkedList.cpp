@@ -605,11 +605,25 @@ int circularDelete(struct Node *p, int pos)
 
 int main()
 {
+    struct Node *temp;
     int a[] = {10, 20, 30, 40, 50};
-    circularCreate(a, 5);
-    circularDelete(Head, 5);
+    create(a, 5);
+    // circularCreate(a, 5);
+    // circularDelete(Head, 5);
     
-    circularRecursiveDisplay(Head);
+    // circularRecursiveDisplay(Head);
+    // RDisplay(first);
     cout<<endl;
+    temp = search(first, 20);
+
+    if (temp)
+    {
+        cout << "Key is found: " << temp->data << endl;
+    }
+    else
+    {
+        cout << "Key is not found." << endl;
+    }
+    
     return 0;
 }
