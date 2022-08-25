@@ -111,6 +111,8 @@ void vectorStl()
     v.insert(v.begin(), vt.begin(), vt.end());
 
     vt.swap(val); // value of vt and val vector will be swapped. 
+	
+    vector<vector<int>> arr(n, vector<int>()); // Used for making two dimensional array.
 }
 
 // List
