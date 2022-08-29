@@ -113,6 +113,14 @@ void vectorStl()
     vt.swap(val); // value of vt and val vector will be swapped. 
 	
     vector<vector<int>> arr(n, vector<int>()); // Used for making two dimensional array.
+    vector<vector<int>> vec( n , vector<int> (m, 0)); 
+    /*
+    We create a 2D vector containing "n"
+    elements each having the value "vector<int> (m, 0)".
+    "vector<int> (m, 0)" means a vector having "m"
+    elements each of value "0".
+    Here these elements are vectors.
+    */
 }
 
 // List
