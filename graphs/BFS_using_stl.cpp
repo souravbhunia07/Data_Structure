@@ -26,6 +26,23 @@ int bfs(vector<vector<int>> &G, int start, int n)
     }
 }
 
+int dfs(vector<vector<int>> G, int start, int n)
+{
+    vector<int> visited(n, 0);
+    if (visited[start] == 0)
+    {
+        cout << start << " ";
+        visited[start] = 1;
+        for (int i = 0; i < n; ++i)
+        {
+            if(G[start][i] == 1 && visited[i] == 0)
+            {
+                dfs(G, i, n);
+            }
+        }
+    }
+}
+
 int main()
 {
     vector<vector<int>> G = {
@@ -39,5 +56,6 @@ int main()
     };
 
     bfs(G, 1, 7);
+    dfs(G, 1, 7);
     return 0;
 }
