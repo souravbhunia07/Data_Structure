@@ -30,6 +30,18 @@ void merge(int arr[], int l, int mid, int h)
     }
 }
 
+void mergeSort(int arr[], int l, int h)
+{
+    int mid;
+    if(l < h)
+    {
+        mid = (l + h) / 2;
+        mergeSort(arr, l, mid);
+        mergeSort(arr, mid + 1, h);
+        merge(arr, l, mid, h);
+    }
+}
+
 void ImergeSort(int arr[], int n)
 {
     int p, i, l, mid, h;
