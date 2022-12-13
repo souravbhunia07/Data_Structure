@@ -121,6 +121,10 @@ void vectorStl()
     elements each of value "0".
     Here these elements are vectors.
     */
+	
+    // Creating 2D array of string using vector
+	vector<string> board(n, string(n, '.'));
+	vector<vector<string>> board(n, vector<string>(n, string(n, '.')));
 }
 
 // List
