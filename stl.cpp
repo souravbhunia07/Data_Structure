@@ -126,6 +126,7 @@ void vectorStl()
 	vector<string> board(n, string(n, '.'));
     // Creating 3D array of string using vector
 	vector<vector<string>> board(n, vector<string>(n, string(n, '.')));
+	https://stackoverflow.com/questions/72505304/how-to-declare-2d-vector-of-strings-in-c-with-size
 }
 
 // List
