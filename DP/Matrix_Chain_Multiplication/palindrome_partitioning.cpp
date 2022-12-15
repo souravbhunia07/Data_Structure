@@ -45,3 +45,6 @@ int main()
     cout << "Min. cuts needed for palindrome partitioning is: " << solve(s, 0, s.length() - 1) << endl;
     return 0;
 }
+
+// TC:- O(2^n)
+// SC:- O(n)
