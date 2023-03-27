@@ -57,6 +57,12 @@ int LCA(int u, int v)
     return Par[u][0];
 }
 
+int lengthFromUtoV(int u, int v)
+{
+    int lca = LCA(u, v);
+    return dep[u] + dep[v] - 2 * dep[lca];
+}
+
 int main()
 {
     int n;
@@ -88,6 +94,8 @@ int main()
     cout << LCA(9, 12) << '\n';
     cout << LCA(10, 8) << '\n';
     cout << LCA(9, 11) << '\n';
+    
+    cout << lengthFromUtoV(9, 12);
 
     return 0;
 }
