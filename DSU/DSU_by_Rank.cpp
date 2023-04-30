@@ -97,7 +97,30 @@ int main(){
 
 
 
+// LC
 
 
-
-
+class DSU {
+public:
+    vector<int> parent, rank;
+    DSU(int n){
+        parent.resize(n, 0);
+        rank.resize(n, 0);
+        
+        for(int i=0;i<n;i++) parent[i] = i;
+    }
+    
+    int Find(int x){
+        return parent[x] = parent[x] == x ? x : Find(parent[x]);
+    }
+    
+    bool Union(int x, int y){
+        int xset = Find(x), yset = Find(y);
+        if(xset != yset){
+            rank[xset] < rank[yset] ? parent[xset] = yset : parent[yset] = xset;
+            rank[xset] += rank[xset] == rank[yset];
+            return true;
+        }
+        return false;
+    }
+};
