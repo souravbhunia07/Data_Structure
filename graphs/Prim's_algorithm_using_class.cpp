@@ -65,16 +65,27 @@ public:
 };
 
 int main()
-{
-    int m, n;
-    cin >> n >> m;
-    Graph g(n);
-    for(int i = 0; i < m; i++)
-    {
-        int x, y, w;
-        cin >> x >> y >> w;
-        g.addEdge(x - 1, y - 1, w);
-    }
+// {
+//     int m, n;
+//     cin >> n >> m;
+//     Graph g(n);
+//     for(int i = 0; i < m; i++)
+//     {
+//         int x, y, w;
+//         cin >> x >> y >> w;
+//         g.addEdge(x - 1, y - 1, w);
+//     }
+//     cout << g.prim_mst() << endl;
+    
+    Graph g(4);
+    g.addEdge(0,1,1);
+    g.addEdge(1,3,3);
+    g.addEdge(3,2,4);
+    g.addEdge(2,0,2);
+    g.addEdge(0,3,2);
+    g.addEdge(1,2,2);
+
     cout << g.prim_mst() << endl;
+
     return 0;
 }
