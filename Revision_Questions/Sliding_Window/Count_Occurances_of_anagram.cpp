@@ -3,7 +3,7 @@ int search(string p, string s) {
 	   // unordered_map<char, int> mp;
 	   // for(int i = 0; i < k; i++)
 	   // {
-	   //     mp[txt[i]]++;
+	   //     mp[pat[i]]++;
 	   // }
 	   // count = mp.size();
 	   // while(j < n)
