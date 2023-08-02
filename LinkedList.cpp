@@ -108,8 +108,8 @@ int max(struct Node *p)
         if (p->data > m)
         {
             m = p->data;
-            p = p->next;
         }
+        p = p->next;
     }
     return m;
 }
