@@ -74,6 +74,55 @@ public:
 
 };
 
+vector<int> dijkstra(vector<vector<int>> &edge, int vertices, int edges, int source)
+{
+    // TC = O(V * (log V + E * log V))
+    // 'edge' contains {u, v, distance} vectors.
+    vector<vector<pair<int, int>>> adj(vertices);
+
+    for (auto it : edge)
+    {
+        int u = it[0];
+        int v = it[1];
+        int distance = it[2];
+        adj[u].push_back({v, distance});
+        adj[v].push_back({u, distance});
+    }
+
+    vector<int> dist(vertices, INT_MAX);
+    set<pair<int, int>> st;
+
+    dist[source] = 0;
+    st.insert({0, source});
+
+    while (!st.empty())
+    {
+        auto it = st.begin();
+        int distTillNow = it->first;
+        int node = it->second;
+        st.erase(it);
+
+        for (auto nbrPair : adj[node])
+        {
+            int nbr = nbrPair.first;
+            int currentEdge = nbrPair.second;
+
+            if (distTillNow + currentEdge < dist[nbr])
+            {
+                auto f = st.find({dist[nbr], nbr});
+                if (f != st.end())
+                {
+                    st.erase(f);
+                }
+                dist[nbr] = distTillNow + currentEdge;
+                st.insert({dist[nbr], nbr});
+            }
+        }
+    }
+
+    return dist;
+}
+
 int main(){
 
 	Graph g(5);
