@@ -2,6 +2,8 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+// TC=O(n^2)
+
 unsigned Add(unsigned a, unsigned b)
 {
     // Initialize variables for sum, carry, and bit mask.
