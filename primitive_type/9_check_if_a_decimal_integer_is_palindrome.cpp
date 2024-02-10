@@ -1,6 +1,8 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+// TC = O(n)
+
 // Function to check if an integer is a palindrome
 bool IsPalindrome(int x) {
     // If x is negative, it cannot be a palindrome
